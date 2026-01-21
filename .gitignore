@@ -1,0 +1,28 @@
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+
+# Lazy.nvim
+lazy-lock.json
+
+# Cache & state
+.netrwhist
+*.log
+
+# Backup / swap / undo
+*~
+*.swp
+*.swo
+*.bak
+undo/
+backup/
+swap/
+
+# OS / editor junk
+.DS_Store
+
