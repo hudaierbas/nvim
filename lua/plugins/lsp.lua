@@ -1,5 +1,5 @@
 return {
-  -- SADECE kendi LSP eklerin
+  -- ONLY add your own LSPs
   {
     "neovim/nvim-lspconfig",
     opts = {
