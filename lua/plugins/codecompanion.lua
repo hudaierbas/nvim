@@ -7,12 +7,21 @@ return {
     },
     config = function()
       require("codecompanion").setup({
+        display = {
+          chat = {
+            window = {
+              layout = "vertical",
+              width = 0.25,
+            },
+          },
+        },
         adapters = {
           copilot = function()
             return require("codecompanion.adapters").extend("copilot", {
               schema = {
                 model = {
-                  default = "claude-3-7-sonnet",
+                  -- default = "claude-3-7-sonnet",
+                  default = "gpt-4.1",
                 },
               },
             })
