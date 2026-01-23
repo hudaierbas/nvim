@@ -1,52 +1,52 @@
-return {
-  {
-    "olimorris/codecompanion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "zbirenbaum/copilot.lua",
-    },
-    config = function()
-      require("codecompanion").setup({
-        display = {
-          chat = {
-            window = {
-              layout = "vertical",
-              width = 0.25,
-            },
-          },
-        },
-        adapters = {
-          copilot = function()
-            return require("codecompanion.adapters").extend("copilot", {
-              schema = {
-                model = {
-                  -- default = "gpt-4.1",
-                  default = "claude-3-opus",
-                },
-              },
-            })
-          end,
-        },
-        strategies = {
-          chat = {
-            adapter = "copilot",
-            system_prompt = [[
-You are a senior full-stack developer.
-You specialize in React, TypeScript, Node.js, and frontend architecture.
-You always reason carefully before answering.
-When modifying code, respect project structure and avoid breaking types.
-Prefer minimal diffs and explain changes clearly.
-]],
-            context = {
-              "buffers", -- açık dosyalar
-              "project_files", -- tüm proje
-              "git_diff", -- değişiklikler
-            },
-          },
-          inline = { adapter = "copilot" },
-          agent = { adapter = "copilot" },
-        },
-      })
-    end,
-  },
-}
+-- return {
+--   {
+--     "olimorris/codecompanion.nvim",
+--     dependencies = {
+--       "nvim-lua/plenary.nvim",
+--       "zbirenbaum/copilot.lua",
+--     },
+--     config = function()
+--       require("codecompanion").setup({
+--         display = {
+--           chat = {
+--             window = {
+--               layout = "vertical",
+--               width = 0.25,
+--             },
+--           },
+--         },
+--         adapters = {
+--           copilot = function()
+--             return require("codecompanion.adapters").extend("copilot", {
+--               schema = {
+--                 model = {
+--                   -- default = "gpt-4.1",
+--                   default = "claude-3-opus",
+--                 },
+--               },
+--             })
+--           end,
+--         },
+--         strategies = {
+--           chat = {
+--             adapter = "copilot",
+--             system_prompt = [[
+-- You are a senior full-stack developer.
+-- You specialize in React, TypeScript, Node.js, and frontend architecture.
+-- You always reason carefully before answering.
+-- When modifying code, respect project structure and avoid breaking types.
+-- Prefer minimal diffs and explain changes clearly.
+-- ]],
+--             context = {
+--               "buffers", -- açık dosyalar
+--               "project_files", -- tüm proje
+--               "git_diff", -- değişiklikler
+--             },
+--           },
+--           inline = { adapter = "copilot" },
+--           agent = { adapter = "copilot" },
+--         },
+--       })
+--     end,
+--   },
+-- }
