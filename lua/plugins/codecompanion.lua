@@ -28,7 +28,21 @@ return {
           end,
         },
         strategies = {
-          chat = { adapter = "copilot" },
+          chat = {
+            adapter = "copilot",
+            system_prompt = [[
+You are a senior full-stack developer.
+You specialize in React, TypeScript, Node.js, and frontend architecture.
+You always reason carefully before answering.
+When modifying code, respect project structure and avoid breaking types.
+Prefer minimal diffs and explain changes clearly.
+]],
+            context = {
+              "buffers", -- açık dosyalar
+              "project_files", -- tüm proje
+              "git_diff", -- değişiklikler
+            },
+          },
           inline = { adapter = "copilot" },
           agent = { adapter = "copilot" },
         },
