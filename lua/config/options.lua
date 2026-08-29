@@ -2,4 +2,35 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
-vim.lsp.set_log_level("OFF")
+-- TypeScript sunucusu: vtsls (LazyVim varsayilani).
+--
+-- tsgo (@typescript/native-preview -- TypeScript'in Go ile yazilmis derleyicisi)
+-- denendi ve olculdu; bu projede vtsls'ten cok daha hizli:
+--
+--   rota / PeriodReport.tsx (2610 satir), ayni kosullar:
+--                                vtsls      tsgo
+--     ilk tip hatasinin cikmasi   68.2 sn    3.5 sn
+--     ilk completion (oto-import) 63.7 sn    0.21 sn
+--     go to definition             9 ms      2 ms
+--     completion oneri sayisi      1048      3687
+--
+-- BUNA RAGMEN vtsls'te kaliniyor. Sebep: tsgo, bir dosya tasindiginda/adi
+-- degistiginde o dosyaya isaret eden import yollarini otomatik guncellemiyor.
+-- vtsls bunu `typescript.updateImportsOnFileMove.enabled = "always"` ile yapiyor
+-- (LazyVim'in vtsls extra'si bu ayari zaten aciyor) ve <leader>cR ile dosya
+-- yeniden adlandirmada importlar kendiliginden duzeliyor. 4080 dosyalik ve
+-- surekli yeniden duzenlenen bu projede bu ozellik hizdan daha kiymetli.
+--
+-- tsgo'da ayrica sunlar yok: `gD` (goToSourceDefinition), `gR` (file references),
+-- <leader>cM (add missing imports), <leader>cV (TS surumu sec).
+-- tsgo'nun geri kalani tamdi: definition/references/rename/codeAction
+-- (organizeImports, removeUnusedImports, fixAll)/inlayHint/semanticTokens.
+--
+-- tsgo'ya gecmek icin asagidaki satiri ac (tsgo Mason ile kurulu):
+-- vim.g.lazyvim_ts_lsp = "tsgo"
+
+-- eslint LSP'nin kaydetmede `eslint --fix` calistirmasini istemiyoruz;
+-- formatlama conform.nvim + prettier uzerinden yapiliyor (bkz. plugins/formatting.lua).
+-- Bu degisken lazyvim.plugins.extras.linting.eslint tarafindan okunuyor,
+-- bu yuzden lazy.nvim kurulumundan once burada set edilmeli.
+vim.g.lazyvim_eslint_auto_format = false

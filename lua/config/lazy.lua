@@ -20,6 +20,11 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
     { import = "lazyvim.plugins.extras.lang.typescript" },
+    -- eslint-lsp Mason'da kurulu oldugu icin mason-lspconfig'in
+    -- automatic_enable'i onu zaten aciyordu -- ama LazyVim'in ayarlari
+    -- (workingDirectories = "auto") olmadan. Extra'yi acikca import ederek
+    -- sunucu dogru yapilandiriliyor.
+    { import = "lazyvim.plugins.extras.linting.eslint" },
 
     -- import/override with your plugins
     { import = "plugins" },
